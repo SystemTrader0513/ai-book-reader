@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "run-20261017-001",
+  "mode": "requirement-validation",
+  "baseUrl": "https://example.test",
+  "environment": "test",
+  "stage": "RUN",
+  "status": "running",
+  "bootstrap": {
+    "status": "complete",
+    "packageManager": "npm",
+    "nodeVersion": "v22.12.0",
+    "playwrightVersion": "Version 1.56.1",
+    "cliCommand": ["npx", "--no-install", "playwright", "cli"],
+    "browser": "chromium",
+    "browserPath": "node_modules/playwright-core/.local-browsers",
+    "hermeticBrowser": true,
+    "installed": {
+      "packageJson": false,
+      "projectDependencies": false,
+      "playwrightTest": false,
+      "cliWorkspace": false,
+      "browser": false
+    },
+    "commands": []
+  },
+  "review": {
+    "status": "approved",
+    "reviewer": "qa-owner",
+    "reviewedAt": "2026-10-17T08:00:00Z",
+    "notes": "Approved for generation"
+  },
+  "artifacts": {
+    "requirements": "requirements.json",
+    "plan": "test-plan.json",
+    "results": "artifacts/results.json"
+  },
+  "healHistory": []
+}

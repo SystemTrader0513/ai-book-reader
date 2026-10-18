@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentara.local/web-test-assistant/test-plan.schema.json",
+  "title": "Web Test Plan",
+  "type": "object",
+  "required": ["schemaVersion", "mode", "stage", "requirements", "excludedRequirements", "review", "scenarios"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "mode": {"enum": ["requirement-validation", "characterization"]},
+    "stage": {"enum": ["PLAN", "REVIEW", "GENERATE", "RUN", "HEAL", "REPORT", "COMPLETE"]},
+    "requirements": {"type": "array", "items": {"type": "string"}},
+    "excludedRequirements": {"type": "array", "items": {"type": "string"}},
+    "review": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["pending", "approved", "rejected"]},
+        "reviewer": {"type": "string"},
+        "reviewedAt": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scenarioId", "requirementIds", "title", "file", "seed", "steps"],
+        "properties": {
+          "scenarioId": {"type": "string", "minLength": 1},
+          "requirementIds": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "title": {"type": "string", "minLength": 1},
+          "file": {"type": "string", "minLength": 1},
+          "seed": {"type": "string", "minLength": 1},
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["action", "expected"],
+              "properties": {
+                "action": {"type": "string", "minLength": 1},
+                "expected": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "observedMismatch": {
+            "type": "object",
+            "required": ["expected", "observed"],
+            "properties": {
+              "expected": {"type": "string"},
+              "observed": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

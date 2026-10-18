@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "requirement-validation",
+  "source": {
+    "path": "requirements/login.md",
+    "type": "markdown"
+  },
+  "requirements": [
+    {
+      "requirementId": "REQ-LOGIN-001",
+      "title": "Valid user can sign in",
+      "status": "ready",
+      "priority": "P0",
+      "preconditions": ["The test account is active"],
+      "testData": {
+        "username": "${TEST_USER}",
+        "password": "${TEST_PASSWORD}"
+      },
+      "steps": [
+        {
+          "action": "Submit valid credentials",
+          "expected": "The dashboard is visible"
+        }
+      ]
+    }
+  ]
+}

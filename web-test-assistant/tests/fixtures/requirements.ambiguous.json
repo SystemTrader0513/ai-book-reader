@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "requirement-validation",
+  "source": {
+    "path": "requirements/search.md",
+    "type": "markdown"
+  },
+  "requirements": [
+    {
+      "requirementId": "REQ-SEARCH-001",
+      "title": "Search behaves correctly",
+      "status": "needs_clarification",
+      "priority": "P1",
+      "preconditions": [],
+      "testData": {},
+      "steps": [
+        {
+          "action": "Search for a product"
+        }
+      ],
+      "clarificationQuestions": ["What result should be shown?"]
+    }
+  ]
+}

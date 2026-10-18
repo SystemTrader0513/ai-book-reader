@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Test Assistant"
+  short_description: "Plan, run, and report Playwright web tests"
+  default_prompt: "Use $web-test-assistant to turn this requirement document into reviewed Playwright tests and a traceable result report."

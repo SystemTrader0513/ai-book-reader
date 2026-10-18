@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentara.local/web-test-assistant/result-summary.schema.json",
+  "title": "Web Test Result Summary",
+  "type": "object",
+  "required": ["schemaVersion", "run", "counts", "rates", "requirements", "tests", "failures", "healHistory", "unmappedTests", "unexecutedRequirements", "residualRisks", "releaseRecommendation"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "run": {"type": "object"},
+    "counts": {
+      "type": "object",
+      "required": ["total", "passed", "failed", "flaky", "skipped", "blocked", "infrastructure_error"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "passed": {"type": "integer", "minimum": 0},
+        "failed": {"type": "integer", "minimum": 0},
+        "flaky": {"type": "integer", "minimum": 0},
+        "skipped": {"type": "integer", "minimum": 0},
+        "blocked": {"type": "integer", "minimum": 0},
+        "infrastructure_error": {"type": "integer", "minimum": 0}
+      }
+    },
+    "rates": {"type": "object"},
+    "requirements": {"type": "array"},
+    "tests": {"type": "array"},
+    "failures": {"type": "array"},
+    "healHistory": {"type": "array"},
+    "unmappedTests": {"type": "array"},
+    "unexecutedRequirements": {"type": "array"},
+    "residualRisks": {"type": "array"},
+    "releaseRecommendation": {"enum": ["release", "review", "do-not-release"]}
+  }
+}

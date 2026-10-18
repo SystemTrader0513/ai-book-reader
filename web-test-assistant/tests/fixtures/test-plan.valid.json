@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "requirement-validation",
+  "stage": "REVIEW",
+  "requirements": ["REQ-LOGIN-001", "REQ-LOGIN-002", "REQ-PROFILE-001"],
+  "excludedRequirements": [],
+  "review": {"status": "approved"},
+  "scenarios": [
+    {
+      "scenarioId": "SCN-1",
+      "requirementIds": ["REQ-LOGIN-001"],
+      "title": "Valid login",
+      "file": "tests/login/valid-login.spec.ts",
+      "seed": "tests/seed.spec.ts",
+      "steps": [{"action": "Sign in", "expected": "Dashboard is visible"}]
+    },
+    {
+      "scenarioId": "SCN-2",
+      "requirementIds": ["REQ-LOGIN-002"],
+      "title": "Invalid login",
+      "file": "tests/login/invalid-login.spec.ts",
+      "seed": "tests/seed.spec.ts",
+      "steps": [{"action": "Submit invalid password", "expected": "Invalid credentials message is visible"}]
+    },
+    {
+      "scenarioId": "SCN-3",
+      "requirementIds": ["REQ-PROFILE-001"],
+      "title": "Update profile",
+      "file": "tests/profile/update-profile.spec.ts",
+      "seed": "tests/seed.spec.ts",
+      "steps": [{"action": "Save profile", "expected": "Success message is visible"}]
+    }
+  ]
+}

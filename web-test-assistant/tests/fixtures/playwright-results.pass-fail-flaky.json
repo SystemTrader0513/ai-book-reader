@@ -1,0 +1,56 @@
+{
+  "config": {"projects": [{"name": "chromium"}]},
+  "suites": [
+    {
+      "title": "generated",
+      "specs": [
+        {
+          "title": "REQ-LOGIN-001 valid login",
+          "file": "tests/login/valid-login.spec.ts",
+          "tests": [
+            {
+              "projectName": "chromium",
+              "annotations": [{"type": "requirement", "description": "REQ-LOGIN-001"}],
+              "results": [{"status": "passed", "duration": 120, "attachments": []}]
+            }
+          ]
+        },
+        {
+          "title": "REQ-LOGIN-002 invalid login",
+          "file": "tests/login/invalid-login.spec.ts",
+          "tests": [
+            {
+              "projectName": "chromium",
+              "annotations": [{"type": "requirement", "description": "REQ-LOGIN-002"}],
+              "results": [
+                {
+                  "status": "failed",
+                  "duration": 230,
+                  "errors": [{"message": "Expected invalid credentials message"}],
+                  "attachments": [
+                    {"name": "trace", "contentType": "application/zip", "path": "artifacts/test-results/invalid-login/trace.zip"},
+                    {"name": "screenshot", "contentType": "image/png", "path": "artifacts/test-results/invalid-login/failure.png"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "REQ-PROFILE-001 update profile",
+          "file": "tests/profile/update-profile.spec.ts",
+          "tests": [
+            {
+              "projectName": "chromium",
+              "annotations": [{"type": "requirement", "description": "REQ-PROFILE-001"}],
+              "results": [
+                {"status": "failed", "duration": 300, "errors": [{"message": "Timeout"}], "attachments": []},
+                {"status": "passed", "duration": 140, "attachments": []}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

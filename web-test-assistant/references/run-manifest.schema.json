@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentara.local/web-test-assistant/run-manifest.schema.json",
+  "title": "Web Test Run Manifest",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "mode", "baseUrl", "environment", "stage", "status", "bootstrap", "review", "artifacts", "healHistory"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "runId": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["requirement-validation", "characterization"]},
+    "baseUrl": {"type": "string", "minLength": 1},
+    "environment": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["BOOTSTRAP", "INGEST", "PLAN", "REVIEW", "GENERATE", "RUN", "HEAL", "REPORT", "COMPLETE"]},
+    "status": {"enum": ["pending", "running", "blocked", "failed", "complete"]},
+    "bootstrap": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["pending", "running", "complete", "failed"]},
+        "packageManager": {"enum": ["npm", "pnpm", "yarn"]},
+        "nodeVersion": {"type": "string"},
+        "playwrightVersion": {"type": "string"},
+        "cliCommand": {"type": "array", "items": {"type": "string"}},
+        "browser": {"type": "string"},
+        "browserPath": {"type": "string"},
+        "hermeticBrowser": {"type": "boolean"},
+        "installed": {"type": "object"},
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["argv", "exitCode"],
+            "properties": {
+              "argv": {"type": "array", "items": {"type": "string"}},
+              "exitCode": {"type": "integer"}
+            }
+          }
+        },
+        "error": {"type": "object"}
+      }
+    },
+    "review": {"type": "object"},
+    "artifacts": {"type": "object"},
+    "healHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["testId", "round", "changeType", "reason", "result"],
+        "properties": {
+          "testId": {"type": "string"},
+          "round": {"type": "integer", "minimum": 1, "maximum": 2},
+          "changeType": {"enum": ["locator_update", "wait_strategy", "fixture_repair", "setup_repair"]},
+          "reason": {"type": "string"},
+          "result": {"type": "string"}
+        }
+      }
+    }
+  }
+}
