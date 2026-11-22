@@ -1,0 +1,23 @@
+@prefix cd: <urn:bank-demo:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Optional starter shapes for RDF instances; not executed by default JSON runtime.
+cd:ControlShape a sh:NodeShape ;
+    sh:targetClass cd:Control ;
+    sh:property [ sh:path cd:controlLevel ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (cd:ENTITY cd:CARD cd:ACCOUNT cd:PRODUCT) ] ;
+    sh:property [ sh:path cd:controlRef ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path cd:appliesTo ; sh:minCount 1 ] .
+cd:FindingShape a sh:NodeShape ;
+    sh:targetClass cd:DiagnosticFinding ;
+    sh:property [ sh:path cd:certainty ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("CONFIRMED" "INFERRED" "UNKNOWN" "CONFLICTED") ] ;
+    sh:property [ sh:path cd:causalRole ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:or (
+        [ sh:not [ sh:property [ sh:path cd:certainty ; sh:hasValue "CONFIRMED" ] ] ]
+        [ sh:property [ sh:path cd:supportedBy ; sh:minCount 1 ; sh:class cd:Evidence ] ]
+    ) .
+cd:EvidenceShape a sh:NodeShape ;
+    sh:targetClass cd:Evidence ;
+    sh:property [ sh:path cd:sourceSystem ; sh:minCount 1 ] ;
+    sh:property [ sh:path cd:sourceRecordId ; sh:minCount 1 ] ;
+    sh:property [ sh:path cd:observedAt ; sh:minCount 1 ; sh:datatype xsd:dateTime ] .

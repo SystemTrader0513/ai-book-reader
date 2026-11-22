@@ -1,0 +1,410 @@
+{
+  "version": "demo-rules-2",
+  "strategy": "FIRST_MATCH",
+  "tables": {
+    "base": [
+      {
+        "id": "conflicting-evidence",
+        "when": {
+          "fact": "conflict",
+          "eq": true
+        },
+        "set": {
+          "certainty": "CONFLICTED",
+          "message_key": "conflict",
+          "missing_evidence_keys": [
+            "conflict"
+          ]
+        }
+      },
+      {
+        "id": "current-state-missing",
+        "when": {
+          "all": [
+            {
+              "fact": "current",
+              "eq": true
+            },
+            {
+              "fact": "current_known",
+              "eq": false
+            }
+          ]
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "causal_role": "UNDETERMINED",
+          "message_key": "current_unknown",
+          "missing_evidence_keys": [
+            "current_state"
+          ]
+        }
+      },
+      {
+        "id": "current-active",
+        "when": {
+          "all": [
+            {
+              "fact": "current",
+              "eq": true
+            },
+            {
+              "fact": "current_active",
+              "eq": true
+            }
+          ]
+        },
+        "set": {
+          "certainty": "CONFIRMED",
+          "causal_role": "CURRENT_STATE",
+          "message_key": "current_active",
+          "missing_evidence_keys": []
+        }
+      },
+      {
+        "id": "current-inactive",
+        "when": {
+          "fact": "current",
+          "eq": true
+        },
+        "set": {
+          "certainty": "CONFIRMED",
+          "causal_role": "CURRENT_STATE",
+          "message_key": "current_inactive",
+          "missing_evidence_keys": []
+        }
+      },
+      {
+        "id": "historical-pass",
+        "when": {
+          "all": [
+            {
+              "fact": "evaluation",
+              "eq": "PASS"
+            },
+            {
+              "fact": "historical_snapshot",
+              "eq": true
+            },
+            {
+              "fact": "has_evidence",
+              "eq": true
+            }
+          ]
+        },
+        "set": {
+          "certainty": "CONFIRMED",
+          "causal_role": "RULED_OUT",
+          "message_key": "passed",
+          "missing_evidence_keys": []
+        }
+      },
+      {
+        "id": "evaluation-error",
+        "when": {
+          "fact": "evaluation",
+          "eq": "ERROR"
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "causal_role": "UNDETERMINED",
+          "message_key": "evaluation_error",
+          "missing_evidence_keys": [
+            "successful_evaluation"
+          ]
+        }
+      },
+      {
+        "id": "evaluation-skipped",
+        "when": {
+          "fact": "evaluation",
+          "eq": "SKIPPED"
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "causal_role": "UNDETERMINED",
+          "message_key": "skipped",
+          "missing_evidence_keys": [
+            "evaluation"
+          ]
+        }
+      },
+      {
+        "id": "historical-fail",
+        "when": {
+          "all": [
+            {
+              "fact": "evaluation",
+              "eq": "FAIL"
+            },
+            {
+              "fact": "historical_snapshot",
+              "eq": true
+            },
+            {
+              "fact": "has_evidence",
+              "eq": true
+            },
+            {
+              "fact": "effective_at_transaction",
+              "eq": true
+            }
+          ]
+        },
+        "set": {
+          "certainty": "CONFIRMED",
+          "causal_role": {
+            "fact": "recorded_role"
+          },
+          "message_key": "recorded",
+          "missing_evidence_keys": []
+        }
+      },
+      {
+        "id": "current-only-candidate",
+        "when": {
+          "fact": "current_active",
+          "eq": true
+        },
+        "set": {
+          "certainty": "INFERRED",
+          "causal_role": "POTENTIAL_BLOCKER",
+          "message_key": "potential",
+          "missing_evidence_keys": [
+            "history"
+          ]
+        }
+      },
+      {
+        "id": "unknown",
+        "when": {
+          "always": true
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "causal_role": "UNDETERMINED",
+          "message_key": "unknown_cause",
+          "missing_evidence_keys": [
+            "history"
+          ]
+        }
+      }
+    ],
+    "limit": [
+      {
+        "id": "preserve-evidence-conflict",
+        "when": {
+          "fact": "certainty",
+          "eq": "CONFLICTED"
+        },
+        "set": {}
+      },
+      {
+        "id": "no-current-limit",
+        "when": {
+          "all": [
+            {
+              "fact": "current",
+              "eq": true
+            },
+            {
+              "fact": "limit_available",
+              "eq": false
+            }
+          ]
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "message_key": "limit_current_missing",
+          "missing_evidence_keys": [
+            "current_limit"
+          ]
+        }
+      },
+      {
+        "id": "no-historical-limit",
+        "when": {
+          "fact": "limit_available",
+          "eq": false
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "message_key": "limit_history_missing",
+          "missing_evidence_keys": [
+            "historical_limit"
+          ]
+        }
+      },
+      {
+        "id": "limit-no-evidence",
+        "when": {
+          "all": [
+            {
+              "fact": "current",
+              "eq": true
+            },
+            {
+              "fact": "has_limit_evidence",
+              "eq": false
+            }
+          ]
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "message_key": "limit_current_missing",
+          "missing_evidence_keys": [
+            "current_limit"
+          ]
+        }
+      },
+      {
+        "id": "unknown-limit-usage",
+        "when": {
+          "fact": "limit_exceeded",
+          "eq": null
+        },
+        "set": {
+          "certainty": "UNKNOWN",
+          "message_key": "limit_usage_missing",
+          "missing_evidence_keys": [
+            "consistent_usage"
+          ]
+        }
+      },
+      {
+        "id": "current-limit-snapshot",
+        "when": {
+          "fact": "current",
+          "eq": true
+        },
+        "set": {
+          "certainty": "CONFIRMED",
+          "causal_role": "CURRENT_STATE",
+          "message_key": "limit_current",
+          "missing_evidence_keys": []
+        }
+      },
+      {
+        "id": "limit-decision-conflict",
+        "when": {
+          "any": [
+            {
+              "all": [
+                {
+                  "fact": "evaluation",
+                  "eq": "FAIL"
+                },
+                {
+                  "fact": "limit_exceeded",
+                  "eq": false
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "fact": "evaluation",
+                  "eq": "PASS"
+                },
+                {
+                  "fact": "limit_exceeded",
+                  "eq": true
+                }
+              ]
+            }
+          ]
+        },
+        "set": {
+          "certainty": "CONFLICTED",
+          "message_key": "limit_conflict",
+          "missing_evidence_keys": [
+            "conflict"
+          ]
+        }
+      },
+      {
+        "id": "confirmed-single-exceeded",
+        "when": {
+          "all": [
+            {
+              "fact": "certainty",
+              "eq": "CONFIRMED"
+            },
+            {
+              "fact": "evaluation",
+              "eq": "FAIL"
+            },
+            {
+              "fact": "limit_exceeded",
+              "eq": true
+            },
+            {
+              "fact": "period",
+              "eq": "SINGLE"
+            }
+          ]
+        },
+        "set": {
+          "message_key": "limit_single_exceeded"
+        }
+      },
+      {
+        "id": "confirmed-daily-exceeded",
+        "when": {
+          "all": [
+            {
+              "fact": "certainty",
+              "eq": "CONFIRMED"
+            },
+            {
+              "fact": "evaluation",
+              "eq": "FAIL"
+            },
+            {
+              "fact": "limit_exceeded",
+              "eq": true
+            }
+          ]
+        },
+        "set": {
+          "message_key": "limit_daily_exceeded"
+        }
+      },
+      {
+        "id": "keep-base-finding",
+        "when": {
+          "always": true
+        },
+        "set": {}
+      }
+    ]
+  },
+  "escalate_certainties": [
+    "UNKNOWN",
+    "CONFLICTED"
+  ],
+  "non_issuer": {
+    "certainty": "UNKNOWN",
+    "causal_role": "UNDETERMINED",
+    "message_key": "non_issuer",
+    "missing_evidence_keys": [
+      "issuer_decision"
+    ]
+  },
+  "not_declined": {
+    "certainty": "UNKNOWN",
+    "causal_role": "UNDETERMINED",
+    "message_key": "not_declined",
+    "missing_evidence_keys": [
+      "issuer_decision"
+    ]
+  },
+  "no_information": {
+    "certainty": "UNKNOWN",
+    "causal_role": "UNDETERMINED",
+    "message_key": "no_information",
+    "missing_evidence_keys": [
+      "capability"
+    ]
+  }
+}

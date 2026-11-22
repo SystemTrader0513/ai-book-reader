@@ -1,0 +1,2 @@
+Configuration valid; 57 normalized-case replays + legacy mapping replay passed.
+Versions: {'ontology': 'demo-0.2', 'mapping': 'normalized-demo-map-2', 'rules': 'demo-rules-2', 'policy': 'demo-policy-2', 'templates': 'zh-CN-2'}

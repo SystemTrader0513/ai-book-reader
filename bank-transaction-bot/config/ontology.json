@@ -1,0 +1,146 @@
+{
+  "version": "demo-0.2",
+  "namespace": "urn:bank-demo:",
+  "control_levels": [
+    "ENTITY",
+    "CARD",
+    "ACCOUNT",
+    "PRODUCT"
+  ],
+  "reason_categories": {
+    "INSUFFICIENT_FUNDS": "资金不足",
+    "CARD_STATUS": "卡状态限制",
+    "MERCHANT_CATEGORY_RESTRICTIONS": "商户类别限制",
+    "GEOGRAPHIC_RESTRICTIONS": "地理范围限制",
+    "VELOCITY_LIMITS": "交易限额",
+    "RISK_CONTROLS": "风险控制",
+    "PRODUCT_CONFIGURATION": "产品配置限制"
+  },
+  "classes": {
+    "Control": {
+      "parents": []
+    },
+    "LimitControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "VELOCITY_LIMITS"
+    },
+    "FundsControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "INSUFFICIENT_FUNDS"
+    },
+    "CardStatusControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "CARD_STATUS"
+    },
+    "MerchantCategoryControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "MERCHANT_CATEGORY_RESTRICTIONS"
+    },
+    "GeographicControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "GEOGRAPHIC_RESTRICTIONS"
+    },
+    "RiskControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "RISK_CONTROLS"
+    },
+    "ProductCapabilityControl": {
+      "parents": [
+        "Control"
+      ],
+      "reason_category": "PRODUCT_CONFIGURATION"
+    },
+    "DailyOnlinePurchaseLimit": {
+      "parents": [
+        "LimitControl"
+      ]
+    },
+    "DailyOfflinePurchaseLimit": {
+      "parents": [
+        "LimitControl"
+      ]
+    },
+    "SingleOnlinePurchaseLimit": {
+      "parents": [
+        "LimitControl"
+      ]
+    },
+    "DailyATMCashWithdrawalLimit": {
+      "parents": [
+        "LimitControl"
+      ]
+    },
+    "DailyCashAdvanceLimit": {
+      "parents": [
+        "LimitControl"
+      ]
+    },
+    "DailyOverseasATMCashWithdrawalLimit": {
+      "parents": [
+        "LimitControl"
+      ]
+    }
+  },
+  "limit_types": {
+    "DailyOnlinePurchaseLimit": {
+      "label": "每日线上消费限额",
+      "period": "DAILY",
+      "scope": "ONLINE_PURCHASE"
+    },
+    "DailyOfflinePurchaseLimit": {
+      "label": "每日线下消费限额",
+      "period": "DAILY",
+      "scope": "OFFLINE_PURCHASE"
+    },
+    "SingleOnlinePurchaseLimit": {
+      "label": "单笔线上消费限额",
+      "period": "SINGLE",
+      "scope": "ONLINE_PURCHASE"
+    },
+    "DailyATMCashWithdrawalLimit": {
+      "label": "每日 ATM 取现限额",
+      "period": "DAILY",
+      "scope": "ATM_CASH"
+    },
+    "DailyCashAdvanceLimit": {
+      "label": "每日现金预借限额",
+      "period": "DAILY",
+      "scope": "CASH_ADVANCE"
+    },
+    "DailyOverseasATMCashWithdrawalLimit": {
+      "label": "每日境外 ATM 取现限额",
+      "period": "DAILY",
+      "scope": "OVERSEAS_ATM_CASH"
+    }
+  },
+  "actions": [
+    {
+      "id": "VIEW_LIMIT",
+      "applies_to": "LimitControl"
+    },
+    {
+      "id": "CARD_HELP",
+      "applies_to": "CardStatusControl"
+    },
+    {
+      "id": "CONTROL_HELP",
+      "applies_to": "Control"
+    },
+    {
+      "id": "HUMAN_REVIEW",
+      "applies_to": "RiskControl"
+    }
+  ]
+}

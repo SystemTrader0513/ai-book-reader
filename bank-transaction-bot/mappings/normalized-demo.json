@@ -1,0 +1,237 @@
+{
+  "version": "normalized-demo-map-2",
+  "source_system": "simulated-normalized",
+  "fields": {
+    "transaction": {
+      "id": {
+        "source": "id",
+        "required": true
+      },
+      "title": {
+        "source": "title",
+        "required": true
+      },
+      "owner": {
+        "source": "owner",
+        "required": true
+      },
+      "occurred_at": {
+        "source": "occurred_at",
+        "required": true
+      },
+      "retrieved_at": {
+        "source": "retrieved_at",
+        "required": true
+      },
+      "card_label": {
+        "source": "card_label",
+        "required": true
+      },
+      "amount": {
+        "source": "amount",
+        "required": true
+      },
+      "currency": {
+        "source": "currency",
+        "required": true
+      },
+      "channel": {
+        "source": "channel",
+        "required": true
+      },
+      "decision_origin": {
+        "source": "decision_origin",
+        "required": true,
+        "enum": "origins"
+      },
+      "decision": {
+        "source": "decision",
+        "required": true,
+        "enum": "decisions"
+      },
+      "historical_snapshot": {
+        "source": "historical_snapshot",
+        "required": true
+      },
+      "response_code": {
+        "source": "response_code",
+        "required": false,
+        "default": null
+      },
+      "response_network": {
+        "source": "response_network",
+        "required": false,
+        "default": null
+      },
+      "response_version": {
+        "source": "response_version",
+        "required": false,
+        "default": null
+      }
+    },
+    "control": {
+      "id": {
+        "source": "id",
+        "required": true
+      },
+      "type": {
+        "source": "type",
+        "required": true,
+        "enum": "types"
+      },
+      "level": {
+        "source": "level",
+        "required": true,
+        "enum": "levels"
+      },
+      "target_ref": {
+        "source": "target_ref",
+        "required": true
+      },
+      "evaluation": {
+        "source": "evaluation",
+        "required": true,
+        "enum": "evaluations"
+      },
+      "primary": {
+        "source": "primary",
+        "required": true
+      },
+      "effective_at_transaction": {
+        "source": "effective_at_transaction",
+        "required": false,
+        "default": null
+      },
+      "current_active": {
+        "source": "current_active",
+        "required": false,
+        "default": null
+      },
+      "evidence_refs": {
+        "source": "evidence_refs",
+        "required": true
+      },
+      "source_system": {
+        "source": "source_system",
+        "required": true
+      },
+      "rule_version": {
+        "source": "rule_version",
+        "required": true
+      },
+      "conflict": {
+        "source": "conflict",
+        "required": false,
+        "default": false
+      }
+    },
+    "limit": {
+      "configured": {
+        "source": "configured",
+        "required": true
+      },
+      "effective": {
+        "source": "effective",
+        "required": true
+      },
+      "used": {
+        "source": "used",
+        "required": true
+      },
+      "period": {
+        "source": "period",
+        "required": true,
+        "enum": "periods"
+      },
+      "currency": {
+        "source": "currency",
+        "required": true
+      },
+      "window_start": {
+        "source": "window_start",
+        "required": true
+      },
+      "window_end": {
+        "source": "window_end",
+        "required": true
+      },
+      "timezone": {
+        "source": "timezone",
+        "required": true
+      },
+      "aggregation_key": {
+        "source": "aggregation_key",
+        "required": false,
+        "default": null
+      },
+      "included_consumption_policy": {
+        "source": "included_consumption_policy",
+        "required": false,
+        "default": null
+      },
+      "evidence_refs": {
+        "source": "evidence_refs",
+        "required": false,
+        "default": []
+      }
+    }
+  },
+  "collections": {
+    "controls": "controls",
+    "historical_limit": "limit",
+    "current_limit": "current_limit"
+  },
+  "enums": {
+    "types": {
+      "LimitControl": "LimitControl",
+      "FundsControl": "FundsControl",
+      "CardStatusControl": "CardStatusControl",
+      "MerchantCategoryControl": "MerchantCategoryControl",
+      "GeographicControl": "GeographicControl",
+      "RiskControl": "RiskControl",
+      "ProductCapabilityControl": "ProductCapabilityControl",
+      "DailyOnlinePurchaseLimit": "DailyOnlinePurchaseLimit",
+      "DailyOfflinePurchaseLimit": "DailyOfflinePurchaseLimit",
+      "SingleOnlinePurchaseLimit": "SingleOnlinePurchaseLimit",
+      "DailyATMCashWithdrawalLimit": "DailyATMCashWithdrawalLimit",
+      "DailyCashAdvanceLimit": "DailyCashAdvanceLimit",
+      "DailyOverseasATMCashWithdrawalLimit": "DailyOverseasATMCashWithdrawalLimit"
+    },
+    "levels": {
+      "ENTITY": "ENTITY",
+      "CARD": "CARD",
+      "ACCOUNT": "ACCOUNT",
+      "PRODUCT": "PRODUCT"
+    },
+    "evaluations": {
+      "PASS": "PASS",
+      "FAIL": "FAIL",
+      "SKIPPED": "SKIPPED",
+      "ERROR": "ERROR",
+      "UNKNOWN": "UNKNOWN"
+    },
+    "origins": {
+      "ISSUER": "ISSUER",
+      "NETWORK": "NETWORK",
+      "MERCHANT": "MERCHANT",
+      "ACQUIRER": "ACQUIRER",
+      "UNKNOWN": "UNKNOWN"
+    },
+    "decisions": {
+      "DECLINED": "DECLINED",
+      "APPROVED": "APPROVED",
+      "TIMEOUT": "TIMEOUT",
+      "UNKNOWN": "UNKNOWN"
+    },
+    "periods": {
+      "SINGLE": "SINGLE",
+      "DAILY": "DAILY"
+    }
+  },
+  "response_codes": {
+    "DEMO_NETWORK@1:61": {
+      "kind": "LIMIT_RELATED",
+      "authority": "HINT_ONLY"
+    }
+  }
+}

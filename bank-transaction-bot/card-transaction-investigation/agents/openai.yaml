@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Transaction Decline and Limit Assistance"
+  short_description: "Explain card declines, controls, and limits with tool evidence"
+  default_prompt: "Use $card-transaction-investigation to explain card transaction declines and limits using authorized tool evidence."

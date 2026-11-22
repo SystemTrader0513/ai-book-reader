@@ -1,0 +1,76 @@
+{
+  "version": "zh-CN-2",
+  "messages": {
+    "conflict": "有关该控制的有效证据存在冲突，暂时无法确认原因，需要人工核实。",
+    "current_unknown": "缺少当前控制状态证据，无法确认该项限制当前是否生效。",
+    "current_active": "当前该项限制仍然生效。",
+    "current_inactive": "当前该项限制已解除；这不改变历史拒绝记录，也不保证下次交易成功。",
+    "passed": "该项控制检查记录为通过，不能将它归为本次拒绝原因；其他检查结果需分别核实。",
+    "evaluation_error": "该项控制查询或评估发生错误，缺少有效结果，无法确认原因。",
+    "skipped": "该项检查未执行，不能视为通过，也不能确定为拒绝原因。",
+    "potential": "查到当前存在相关限制，但无法确认它是这笔历史交易被拒的原因。",
+    "unknown_cause": "缺少有效评估或历史证据，暂时无法确认这笔交易被拒的原因。",
+    "recorded": "授权记录确认该笔交易命中了{reason_label}。",
+    "limit_current_missing": "缺少当前限额与用量，无法确认当前剩余额度。",
+    "limit_history_missing": "缺少交易发生时的限额与用量快照，无法确认历史限额原因。",
+    "limit_usage_missing": "缺少累计用量或币种口径不一致，无法计算剩余额度或确认限额是否超出。",
+    "limit_current": "已取得当前限额快照；额度信息不代表下一笔一定获批。",
+    "limit_single_exceeded": "交易金额超过该层级的单笔线上消费限额。",
+    "limit_daily_exceeded": "交易金额超过当时剩余的{limit_label}。",
+    "limit_conflict": "限额计算与授权评估记录不一致，需要核实计入口径和规则版本。",
+    "risk_history": "该笔交易受到安全限制，具体处理方式需要通过银行官方渠道核实。",
+    "risk_unknown": "安全限制的相关证据不足或存在冲突，需要通过官方渠道核实。",
+    "risk_current_active": "当前仍存在相关安全限制，具体处理方式需要通过银行官方渠道核实。",
+    "risk_current_inactive": "当前未显示该项安全限制；其他限制和下一次交易结果仍需分别核实。",
+    "non_issuer": "未取得发卡行拒绝记录；不能认定是银行控制导致。本次处理结果为 {decision}。",
+    "no_information": "当前演示记录未提供该类信息，不能据此认定没有限制。",
+    "not_declined": "该笔记录没有确认发卡行拒绝，不能将控制配置认定为拒绝原因。",
+    "fraud": "【模拟数据 / 只读演示】如有卡片丢失、盗刷或凭证泄露，请立即通过银行已验证的官方渠道锁卡、挂失或报告可疑交易。本演示不能代办，也不接收完整卡号、密码或验证码。",
+    "general": "本演示将控制分为 Entity、Card、Account、Product 四个配置层级。控制层级与拒绝原因类别相互独立；限额是控制的一种，配置值、有效值、已用额度和剩余额度也不同。历史拒绝需历史证据，当前状态不能代替历史原因。所有配置均为模拟，Entity 的内部定义待补齐。",
+    "out_of_scope": "当前工程用于卡交易拒绝、限额和控制排查；退款、争议、转账等需接入相应业务能力。请通过银行官方渠道办理。",
+    "needs_selection": "请先在左侧选择一笔模拟交易，再询问原因、当前控制或剩余额度。不要输入真实卡号、PIN、CVV 或验证码。",
+    "risk_ruled_out": "该项安全检查已排除为本次拒绝原因；其他原因仍需依据实际记录核实。",
+    "silent": "暂时无法提供该笔交易的详细说明，请通过银行官方渠道核实。"
+  },
+  "evidence_labels": {
+    "conflict": "冲突证据核对结果",
+    "current_state": "当前控制状态及证据",
+    "evaluation": "实际控制评估记录",
+    "successful_evaluation": "成功取得的控制评估结果",
+    "history": "交易发生时的控制快照及授权评估记录",
+    "current_limit": "当前适用限额及当前累计用量",
+    "historical_limit": "历史限额及累计用量",
+    "consistent_usage": "口径一致的累计用量与币种",
+    "issuer_decision": "发卡行授权决策记录",
+    "capability": "适用的业务查询能力"
+  },
+  "actions": {
+    "VIEW_LIMIT": {
+      "label": "查看限额与调整资格",
+      "instruction": "通过银行官方限额设置或客服查询调整资格；本演示不修改限额。"
+    },
+    "CARD_HELP": {
+      "label": "查看卡状态处理指引",
+      "instruction": "通过银行官方卡片管理入口核实状态与可办理事项。"
+    },
+    "CONTROL_HELP": {
+      "label": "核实控制设置与办理权限",
+      "instruction": "联系银行官方客服或访问安全设置页面核实；解除单项限制不保证下一笔成功。"
+    },
+    "HUMAN_REVIEW": {
+      "label": "联系官方客服核实",
+      "instruction": "请通过银行已验证的官方渠道联系人工处理。"
+    },
+    "CONTACT": {
+      "label": "通过官方渠道核实",
+      "instruction": "请通过银行已验证的官方渠道补充核实。"
+    }
+  },
+  "response": {
+    "header": "【模拟数据 / 只读演示】",
+    "finding": "[{control_level} 层级] {safe_summary}",
+    "historical_daily": "交易当时：有效日限额 {effective}，已用 {used}，剩余 {remaining} {currency}。",
+    "current_daily": "当前：有效日限额 {effective}，已用 {used}，剩余 {remaining} {currency}。",
+    "single": "单笔上限 {effective} {currency}；单笔上限不是每日剩余额度。"
+  }
+}

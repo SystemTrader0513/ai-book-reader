@@ -1,0 +1,5 @@
+{
+  "demo_customer": "demo-customer",
+  "mapping_profile": "mappings/normalized-demo.json",
+  "allow_writes": false
+}

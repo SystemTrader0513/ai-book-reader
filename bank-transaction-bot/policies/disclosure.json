@@ -1,0 +1,37 @@
+{
+  "version": "demo-policy-2",
+  "default": "GENERIC",
+  "categories": {
+    "INSUFFICIENT_FUNDS": "FULL",
+    "CARD_STATUS": "FULL",
+    "MERCHANT_CATEGORY_RESTRICTIONS": "FULL",
+    "GEOGRAPHIC_RESTRICTIONS": "FULL",
+    "VELOCITY_LIMITS": "FULL",
+    "RISK_CONTROLS": "GENERIC",
+    "PRODUCT_CONFIGURATION": "FULL"
+  },
+  "generic": {
+    "messages": {
+      "historical": "risk_history",
+      "uncertain": "risk_unknown",
+      "current_active": "risk_current_active",
+      "current_inactive": "risk_current_inactive",
+      "ruled_out": "risk_ruled_out"
+    },
+    "mask_fields": [
+      "evaluation_result",
+      "rule_version"
+    ],
+    "replacement": "RESTRICTED",
+    "allowed_actions": [
+      "HUMAN_REVIEW"
+    ]
+  },
+  "silent": {
+    "message": "silent",
+    "allowed_actions": [
+      "CONTACT"
+    ]
+  },
+  "fallback_action": "CONTACT"
+}

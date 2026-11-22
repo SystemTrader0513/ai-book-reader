@@ -1,0 +1,98 @@
+@prefix cd: <urn:bank-demo:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+cd:Ontology a owl:Ontology ; owl:versionInfo "demo-0.2" .
+cd:Entity a owl:Class .
+cd:Card a owl:Class .
+cd:Account a owl:Class .
+cd:Product a owl:Class .
+cd:ControlLevel a owl:Class .
+cd:ReasonCategory a owl:Class .
+cd:PaymentAttempt a owl:Class .
+cd:AuthorizationDecision a owl:Class .
+cd:ControlEvaluation a owl:Class .
+cd:DiagnosticCase a owl:Class .
+cd:DiagnosticFinding a owl:Class .
+cd:Evidence a owl:Class .
+cd:Action a owl:Class .
+cd:ActionRecommendation a owl:Class .
+cd:Control a owl:Class .
+cd:LimitControl a owl:Class .
+cd:LimitControl rdfs:subClassOf cd:Control .
+cd:LimitControl cd:defaultReasonCategory cd:VELOCITY_LIMITS .
+cd:FundsControl a owl:Class .
+cd:FundsControl rdfs:subClassOf cd:Control .
+cd:FundsControl cd:defaultReasonCategory cd:INSUFFICIENT_FUNDS .
+cd:CardStatusControl a owl:Class .
+cd:CardStatusControl rdfs:subClassOf cd:Control .
+cd:CardStatusControl cd:defaultReasonCategory cd:CARD_STATUS .
+cd:MerchantCategoryControl a owl:Class .
+cd:MerchantCategoryControl rdfs:subClassOf cd:Control .
+cd:MerchantCategoryControl cd:defaultReasonCategory cd:MERCHANT_CATEGORY_RESTRICTIONS .
+cd:GeographicControl a owl:Class .
+cd:GeographicControl rdfs:subClassOf cd:Control .
+cd:GeographicControl cd:defaultReasonCategory cd:GEOGRAPHIC_RESTRICTIONS .
+cd:RiskControl a owl:Class .
+cd:RiskControl rdfs:subClassOf cd:Control .
+cd:RiskControl cd:defaultReasonCategory cd:RISK_CONTROLS .
+cd:ProductCapabilityControl a owl:Class .
+cd:ProductCapabilityControl rdfs:subClassOf cd:Control .
+cd:ProductCapabilityControl cd:defaultReasonCategory cd:PRODUCT_CONFIGURATION .
+cd:DailyOnlinePurchaseLimit a owl:Class .
+cd:DailyOnlinePurchaseLimit rdfs:subClassOf cd:LimitControl .
+cd:DailyOfflinePurchaseLimit a owl:Class .
+cd:DailyOfflinePurchaseLimit rdfs:subClassOf cd:LimitControl .
+cd:SingleOnlinePurchaseLimit a owl:Class .
+cd:SingleOnlinePurchaseLimit rdfs:subClassOf cd:LimitControl .
+cd:DailyATMCashWithdrawalLimit a owl:Class .
+cd:DailyATMCashWithdrawalLimit rdfs:subClassOf cd:LimitControl .
+cd:DailyCashAdvanceLimit a owl:Class .
+cd:DailyCashAdvanceLimit rdfs:subClassOf cd:LimitControl .
+cd:DailyOverseasATMCashWithdrawalLimit a owl:Class .
+cd:DailyOverseasATMCashWithdrawalLimit rdfs:subClassOf cd:LimitControl .
+cd:appliesToConcept a owl:AnnotationProperty .
+cd:VIEW_LIMIT a cd:Action ; cd:appliesToConcept cd:LimitControl .
+cd:CARD_HELP a cd:Action ; cd:appliesToConcept cd:CardStatusControl .
+cd:CONTROL_HELP a cd:Action ; cd:appliesToConcept cd:Control .
+cd:HUMAN_REVIEW a cd:Action ; cd:appliesToConcept cd:RiskControl .
+cd:defaultReasonCategory a owl:AnnotationProperty .
+cd:ENTITY a cd:ControlLevel .
+cd:CARD a cd:ControlLevel .
+cd:ACCOUNT a cd:ControlLevel .
+cd:PRODUCT a cd:ControlLevel .
+cd:INSUFFICIENT_FUNDS a cd:ReasonCategory ; rdfs:label "资金不足" .
+cd:CARD_STATUS a cd:ReasonCategory ; rdfs:label "卡状态限制" .
+cd:MERCHANT_CATEGORY_RESTRICTIONS a cd:ReasonCategory ; rdfs:label "商户类别限制" .
+cd:GEOGRAPHIC_RESTRICTIONS a cd:ReasonCategory ; rdfs:label "地理范围限制" .
+cd:VELOCITY_LIMITS a cd:ReasonCategory ; rdfs:label "交易限额" .
+cd:RISK_CONTROLS a cd:ReasonCategory ; rdfs:label "风险控制" .
+cd:PRODUCT_CONFIGURATION a cd:ReasonCategory ; rdfs:label "产品配置限制" .
+cd:controlLevel a owl:ObjectProperty ; rdfs:domain cd:Control ; rdfs:range cd:ControlLevel .
+cd:evaluatedControl a owl:ObjectProperty ; rdfs:domain cd:ControlEvaluation ; rdfs:range cd:Control .
+cd:hasEvaluation a owl:ObjectProperty ; rdfs:domain cd:AuthorizationDecision ; rdfs:range cd:ControlEvaluation .
+cd:hasDecision a owl:ObjectProperty ; rdfs:domain cd:PaymentAttempt ; rdfs:range cd:AuthorizationDecision .
+cd:hasFinding a owl:ObjectProperty ; rdfs:domain cd:DiagnosticCase ; rdfs:range cd:DiagnosticFinding .
+cd:supportedBy a owl:ObjectProperty ; rdfs:domain cd:DiagnosticFinding ; rdfs:range cd:Evidence .
+cd:reasonCategory a owl:ObjectProperty ; rdfs:domain cd:DiagnosticFinding ; rdfs:range cd:ReasonCategory .
+cd:appliesTo a owl:ObjectProperty .
+cd:concernsAttempt a owl:ObjectProperty .
+cd:hasRecommendation a owl:ObjectProperty .
+cd:controlRef a owl:DatatypeProperty .
+cd:certainty a owl:DatatypeProperty .
+cd:causalRole a owl:DatatypeProperty .
+cd:sourceSystem a owl:DatatypeProperty .
+cd:sourceRecordId a owl:DatatypeProperty .
+cd:observedAt a owl:DatatypeProperty .
+cd:validAt a owl:DatatypeProperty .
+cd:ruleVersion a owl:DatatypeProperty .
+cd:evaluationResult a owl:DatatypeProperty .
+cd:amount a owl:DatatypeProperty .
+cd:currency a owl:DatatypeProperty .
+cd:configuredValue a owl:DatatypeProperty .
+cd:effectiveValue a owl:DatatypeProperty .
+cd:usedAmount a owl:DatatypeProperty .
+cd:windowStart a owl:DatatypeProperty .
+cd:windowEnd a owl:DatatypeProperty .
+cd:businessTimezone a owl:DatatypeProperty .
+cd:aggregationKey a owl:DatatypeProperty .

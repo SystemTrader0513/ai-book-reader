@@ -1,0 +1,787 @@
+[
+  {
+    "id": "online-card",
+    "title": "每日线上消费限额 · Card",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-online-card",
+        "type": "DailyOnlinePurchaseLimit",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-online-card"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "700.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-19T00:00:00+08:00",
+          "window_end": "2026-11-20T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        },
+        "current_limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "850.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-20T00:00:00+08:00",
+          "window_end": "2026-11-21T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1",
+          "evidence_refs": [
+            "ev-current-online-card"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "offline-product",
+    "title": "每日线下消费限额 · Product",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "OFFLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-offline-product",
+        "type": "DailyOfflinePurchaseLimit",
+        "level": "PRODUCT",
+        "target_ref": "product-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-offline-product"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "700.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-19T00:00:00+08:00",
+          "window_end": "2026-11-20T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        },
+        "current_limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "850.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-20T00:00:00+08:00",
+          "window_end": "2026-11-21T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1",
+          "evidence_refs": [
+            "ev-current-offline-product"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "single-account",
+    "title": "单笔线上消费限额 · Account",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "1200.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-single-account",
+        "type": "SingleOnlinePurchaseLimit",
+        "level": "ACCOUNT",
+        "target_ref": "account-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-single-account"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": null,
+          "period": "SINGLE",
+          "currency": "CNY",
+          "window_start": null,
+          "window_end": null,
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        },
+        "current_limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": null,
+          "period": "SINGLE",
+          "currency": "CNY",
+          "window_start": null,
+          "window_end": null,
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1",
+          "evidence_refs": [
+            "ev-current-single-account"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "atm-card",
+    "title": "每日 ATM 取现限额 · Card",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ATM_CASH",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-atm-card",
+        "type": "DailyATMCashWithdrawalLimit",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-atm-card"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "700.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-19T00:00:00+08:00",
+          "window_end": "2026-11-20T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        },
+        "current_limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "850.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-20T00:00:00+08:00",
+          "window_end": "2026-11-21T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1",
+          "evidence_refs": [
+            "ev-current-atm-card"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "advance-product",
+    "title": "每日现金预借限额 · Product",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "CASH_ADVANCE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-advance-product",
+        "type": "DailyCashAdvanceLimit",
+        "level": "PRODUCT",
+        "target_ref": "product-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-advance-product"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "700.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-19T00:00:00+08:00",
+          "window_end": "2026-11-20T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        },
+        "current_limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "850.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-20T00:00:00+08:00",
+          "window_end": "2026-11-21T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1",
+          "evidence_refs": [
+            "ev-current-advance-product"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "overseas-entity",
+    "title": "每日境外 ATM 取现限额 · Entity",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "OVERSEAS_ATM_CASH",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-overseas-entity",
+        "type": "DailyOverseasATMCashWithdrawalLimit",
+        "level": "ENTITY",
+        "target_ref": "entity-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-overseas-entity"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "700.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-19T00:00:00+08:00",
+          "window_end": "2026-11-20T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        },
+        "current_limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "850.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-20T00:00:00+08:00",
+          "window_end": "2026-11-21T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1",
+          "evidence_refs": [
+            "ev-current-overseas-entity"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "funds",
+    "title": "可用资金不足 · Account",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-funds",
+        "type": "FundsControl",
+        "level": "ACCOUNT",
+        "target_ref": "account-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-funds"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "available": "200.00"
+      }
+    ]
+  },
+  {
+    "id": "card-locked",
+    "title": "客户主动锁卡 · Card",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-card-locked",
+        "type": "CardStatusControl",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-card-locked"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ],
+    "summary": "交易发生时，该卡处于客户主动锁定状态。"
+  },
+  {
+    "id": "mcc",
+    "title": "商户类别限制 · Product",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-mcc",
+        "type": "MerchantCategoryControl",
+        "level": "PRODUCT",
+        "target_ref": "product-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-mcc"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ],
+    "summary": "交易商户类别不在该产品允许范围内。"
+  },
+  {
+    "id": "geography",
+    "title": "地区限制 · Entity",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-geography",
+        "type": "GeographicControl",
+        "level": "ENTITY",
+        "target_ref": "entity-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-geography"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ],
+    "summary": "交易匹配了主体层级的地区限制。"
+  },
+  {
+    "id": "entity-risk",
+    "title": "安全限制 · Entity",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-entity-risk",
+        "type": "RiskControl",
+        "level": "ENTITY",
+        "target_ref": "entity-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-entity-risk"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "risk_score": 97,
+        "internal_threshold": 80,
+        "internal_rule": "secret-rule-88"
+      }
+    ],
+    "summary": "禁止向客户泄露的原始信息"
+  },
+  {
+    "id": "product",
+    "title": "产品暂不支持此交易 · Product",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-product",
+        "type": "ProductCapabilityControl",
+        "level": "PRODUCT",
+        "target_ref": "product-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-product"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ],
+    "summary": "该产品当前配置不支持这类交易。"
+  },
+  {
+    "id": "history-missing",
+    "title": "只有当前状态，缺少历史证据",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": false,
+    "controls": [
+      {
+        "id": "ctl-history-missing",
+        "type": "GeographicControl",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "UNKNOWN",
+        "primary": false,
+        "effective_at_transaction": null,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-current-only"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ]
+  },
+  {
+    "id": "unlocked-now",
+    "title": "当时锁定，目前已解除",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-unlocked-now",
+        "type": "CardStatusControl",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": false,
+        "evidence_refs": [
+          "ev-unlocked-now"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ],
+    "summary": "授权记录确认：交易发生时该卡处于锁定状态。"
+  },
+  {
+    "id": "conflict",
+    "title": "两份有效证据存在冲突",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-conflict",
+        "type": "CardStatusControl",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-conflict-a",
+          "ev-conflict-b"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "conflict": true
+      }
+    ]
+  },
+  {
+    "id": "skipped",
+    "title": "检查未执行，不能推断通过",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-skipped",
+        "type": "CardStatusControl",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "SKIPPED",
+        "primary": false,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-skipped"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      }
+    ]
+  },
+  {
+    "id": "network",
+    "title": "网络超时，没有发卡行拒绝记录",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "NETWORK",
+    "decision": "TIMEOUT",
+    "historical_snapshot": true,
+    "controls": []
+  },
+  {
+    "id": "multiple",
+    "title": "多项限制，保留实际记录的主因",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": true,
+    "controls": [
+      {
+        "id": "ctl-multiple",
+        "type": "CardStatusControl",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "FAIL",
+        "primary": true,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-multiple"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1"
+      },
+      {
+        "id": "ctl-secondary",
+        "type": "DailyOnlinePurchaseLimit",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "UNKNOWN",
+        "primary": false,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-online-card"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": "700.00",
+          "period": "DAILY",
+          "currency": "CNY",
+          "window_start": "2026-11-19T00:00:00+08:00",
+          "window_end": "2026-11-20T00:00:00+08:00",
+          "timezone": "Asia/Shanghai",
+          "aggregation_key": "card-demo",
+          "included_consumption_policy": "demo-additive-v1"
+        }
+      }
+    ],
+    "summary": "授权记录确认卡锁定为主拒绝原因。"
+  },
+  {
+    "id": "missing-usage",
+    "title": "累计用量缺失，不能按零计算",
+    "owner": "demo-customer",
+    "occurred_at": "2026-11-19T10:30:00+08:00",
+    "retrieved_at": "2026-11-20T09:00:00+08:00",
+    "card_label": "演示卡 •• 2048",
+    "amount": "500.00",
+    "currency": "CNY",
+    "channel": "ONLINE_PURCHASE",
+    "decision_origin": "ISSUER",
+    "decision": "DECLINED",
+    "historical_snapshot": false,
+    "controls": [
+      {
+        "id": "ctl-missing-usage",
+        "type": "DailyOnlinePurchaseLimit",
+        "level": "CARD",
+        "target_ref": "card-demo",
+        "evaluation": "UNKNOWN",
+        "primary": false,
+        "effective_at_transaction": true,
+        "current_active": true,
+        "evidence_refs": [
+          "ev-missing-usage"
+        ],
+        "source_system": "mock-authorization",
+        "rule_version": "demo-rule-1",
+        "limit": {
+          "configured": "1000.00",
+          "effective": "1000.00",
+          "used": null,
+          "period": "DAILY",
+          "currency": "CNY",
+          "timezone": "Asia/Shanghai",
+          "window_start": null,
+          "window_end": null
+        }
+      }
+    ]
+  }
+]

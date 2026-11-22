@@ -1,0 +1,62 @@
+{
+  "attemptId": "online-card",
+  "title": "每日线上消费限额 · Card",
+  "subjectId": "demo-customer",
+  "occurred_at": "2026-11-19T10:30:00+08:00",
+  "retrieved_at": "2026-11-20T09:00:00+08:00",
+  "card_label": "演示卡 •• 2048",
+  "requestedAmount": "500.00",
+  "currency": "CNY",
+  "channel": "ONLINE_PURCHASE",
+  "decision_origin": "ISSUER",
+  "decision": "DECLINED",
+  "historical_snapshot": true,
+  "checks": [
+    {
+      "attemptId": "ctl-online-card",
+      "kindCode": "DOP",
+      "layerCode": "C",
+      "target_ref": "card-demo",
+      "resultCode": "REJECT",
+      "primary": true,
+      "effective_at_transaction": true,
+      "current_active": true,
+      "evidence_refs": [
+        "ev-online-card"
+      ],
+      "source_system": "mock-authorization",
+      "rule_version": "demo-rule-1",
+      "historicalAllowance": {
+        "configured": "1000.00",
+        "effective": "1000.00",
+        "used": "700.00",
+        "period": "DAILY",
+        "currency": "CNY",
+        "window_start": "2026-11-19T00:00:00+08:00",
+        "window_end": "2026-11-20T00:00:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "aggregation_key": "card-demo",
+        "included_consumption_policy": "demo-additive-v1"
+      },
+      "currentAllowance": {
+        "configured": "1000.00",
+        "effective": "1000.00",
+        "used": "850.00",
+        "period": "DAILY",
+        "currency": "CNY",
+        "window_start": "2026-11-20T00:00:00+08:00",
+        "window_end": "2026-11-21T00:00:00+08:00",
+        "timezone": "Asia/Shanghai",
+        "aggregation_key": "card-demo",
+        "included_consumption_policy": "demo-additive-v1",
+        "evidence_refs": [
+          "ev-current-online-card"
+        ]
+      },
+      "raw_secret": "do-not-expose"
+    }
+  ],
+  "response_code": "61",
+  "response_network": "DEMO_NETWORK",
+  "response_version": "1"
+}
